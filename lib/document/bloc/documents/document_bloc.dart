@@ -19,7 +19,7 @@ class DocumentBloc extends HydratedBloc<DocumentEvent, DocumentState> {
     Document currentDocument = json['currentDocument'] != null &&
             json['currentDocument']['uuid'].toString().length > 0
         ? Document.fromJson(json['currentDocument'])
-        : new Document('initial_uuid', 'initial_uuid', DateTime.now(), []);
+        : new Document('initial_uuid', DateTime.now(), []);
     // The state will always be persisted as DocumentState in this example (not as DocumentLoading etc.)
     return DocumentState.fromJson(
         {'documents': parsedDocuments, 'currentDocument': currentDocument});
@@ -42,7 +42,7 @@ class DocumentBloc extends HydratedBloc<DocumentEvent, DocumentState> {
         await Future.delayed(Duration(seconds: 2));
 
         List<Document> updatedDocuments = [
-          new Document(Uuid().v4(), Uuid().v4(), DateTime.now(),
+          new Document(Uuid().v4(), DateTime.now(),
               [new Page('fileName', Uuid().v4())])
         ];
 
